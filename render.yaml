@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ai-chatbot-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: FRONTEND_URI
+        sync: false
