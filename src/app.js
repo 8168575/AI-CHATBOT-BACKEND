@@ -26,14 +26,28 @@ function isAllowedDevOrigin(origin) {
   }
 }
 
+function isAllowedVercelOrigin(origin) {
+  try {
+    const url = new URL(origin);
+    return url.protocol === "https:" && url.hostname.endsWith(".vercel.app");
+  } catch {
+    return false;
+  }
+}
+
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.has(origin) || isAllowedDevOrigin(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.has(origin) ||
+        isAllowedDevOrigin(origin) ||
+        isAllowedVercelOrigin(origin)
+      ) {
         return callback(null, true);
       }
 
-      return callback(new Error(`Origin ${origin} is not allowed by CORS.`));
+      return callback(null, false);
     },
     credentials: true,
   })
