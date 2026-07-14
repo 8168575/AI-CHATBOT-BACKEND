@@ -1,6 +1,8 @@
 # AI-CHATBOT-BACKEND
 
-Express backend for the CampusAI chatbot.
+Live frontend: https://ai-chatbot-frontend-roan-psi.vercel.app/
+
+Express backend for the HFM Campus AI chatbot.
 
 ## Local development
 
